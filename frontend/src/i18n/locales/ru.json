@@ -1,0 +1,61 @@
+{
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "success": "Успешно",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "confirm": "Подтвердить",
+    "back": "Назад"
+  },
+  "auth": {
+    "login": "Вход",
+    "register": "Регистрация",
+    "logout": "Выход",
+    "email": "Email",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "forgotPassword": "Забыли пароль?",
+    "loginSuccess": "Вы успешно вошли в систему",
+    "loginError": "Неверный логин или пароль",
+    "registerSuccess": "Вы успешно зарегистрировались"
+  },
+  "restaurant": {
+    "menu": "Меню",
+    "orders": "Заказы",
+    "reviews": "Отзывы",
+    "address": "Адрес",
+    "workingHours": "Часы работы",
+    "delivery": "Доставка",
+    "pickup": "Самовывоз",
+    "minOrder": "Минимальный заказ",
+    "deliveryTime": "Время доставки",
+    "closed": "Закрыто"
+  },
+  "order": {
+    "orderNow": "Заказать сейчас",
+    "addToCart": "Добавить в корзину",
+    "checkout": "Оформить заказ",
+    "total": "Итого",
+    "items": "товары",
+    "orderStatus": {
+      "pending": "Ожидает",
+      "confirmed": "Подтвержден",
+      "preparing": "Готовится",
+      "delivering": "Доставляется",
+      "completed": "Завершен",
+      "cancelled": "Отменен"
+    }
+  },
+  "profile": {
+    "myProfile": "Мой профиль",
+    "editProfile": "Редактировать профиль",
+    "myOrders": "Мои заказы",
+    "myAddresses": "Мои адреса",
+    "settings": "Настройки",
+    "language": "Язык",
+    "notifications": "Уведомления"
+  }
+} 

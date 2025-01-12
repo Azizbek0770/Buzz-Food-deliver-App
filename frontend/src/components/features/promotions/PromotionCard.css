@@ -1,0 +1,100 @@
+.promotion-card {
+  display: block;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.promotion-card:hover {
+  transform: translateY(-4px);
+}
+
+.promotion-image {
+  position: relative;
+  height: 200px;
+}
+
+.promotion-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--primary-color);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.promotion-content {
+  padding: 1.5rem;
+}
+
+.promotion-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.restaurant-name {
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.promotion-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.date-range {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status.active {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.status.inactive {
+  background: var(--error-light);
+  color: var(--error);
+}
+
+@media (max-width: 768px) {
+  .promotion-image {
+    height: 160px;
+  }
+  
+  .promotion-content {
+    padding: 1rem;
+  }
+} 

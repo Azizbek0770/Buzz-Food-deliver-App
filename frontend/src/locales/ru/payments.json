@@ -1,0 +1,45 @@
+{
+  "dashboard": "Панель управления платежами",
+  "total_payments": "Всего платежей",
+  "total_amount": "Общая сумма",
+  "successful_payments": "Успешные платежи",
+  "failed_payments": "Неудачные платежи",
+  "daily_statistics": "Ежедневная статистика",
+  "daily_amount": "Дневная сумма",
+  "payment_types": "Типы платежей",
+  "count": "Количество",
+  "types": {
+    "payme": "Payme",
+    "click": "Click",
+    "cash": "Наличные",
+    "terminal": "Терминал"
+  },
+  "status": {
+    "pending": "В ожидании",
+    "processing": "В процессе",
+    "completed": "Завершен",
+    "failed": "Не удался",
+    "cancelled": "Отменен",
+    "refunded": "Возвращен"
+  },
+  "form": {
+    "title": "Оплата",
+    "amount": "Сумма",
+    "payment_type": "Тип оплаты",
+    "submit": "Оплатить",
+    "cancel": "Отмена"
+  },
+  "messages": {
+    "payment_success": "Платеж успешно выполнен",
+    "payment_error": "Произошла ошибка при оплате",
+    "payment_cancelled": "Платеж отменен",
+    "payment_pending": "Платеж ожидает обработки",
+    "payment_processing": "Платеж обрабатывается"
+  },
+  "history": "История платежей",
+  "id": "ID",
+  "transaction_id": "ID транзакции",
+  "date": "Дата",
+  "no_payments": "Платежи отсутствуют",
+  "status_label": "Статус"
+} 

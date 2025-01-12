@@ -1,0 +1,125 @@
+.admin-orders {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-orders h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+}
+
+.orders-table {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background-color: var(--background-color);
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: var(--hover-color);
+}
+
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status.pending {
+  background-color: var(--warning-light);
+  color: var(--warning);
+}
+
+.status.confirmed {
+  background-color: var(--info-light);
+  color: var(--info);
+}
+
+.status.preparing {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.status.ready {
+  background-color: var(--success-light);
+  color: var(--success);
+}
+
+.status.delivering {
+  background-color: var(--info-light);
+  color: var(--info);
+}
+
+.status.delivered {
+  background-color: var(--success-light);
+  color: var(--success);
+}
+
+.status.cancelled {
+  background-color: var(--danger-light);
+  color: var(--danger);
+}
+
+select {
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+}
+
+.error {
+  text-align: center;
+  padding: 2rem;
+  color: var(--danger);
+  background-color: var(--danger-light);
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .admin-orders {
+    padding: 1rem;
+  }
+
+  th, td {
+    padding: 0.75rem;
+  }
+
+  .status {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+} 

@@ -1,0 +1,52 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "name": "Name",
+    "phone": "Phone"
+  },
+  "restaurant": {
+    "menu": "Menu",
+    "order": "Order",
+    "reviews": "Reviews",
+    "address": "Address",
+    "workingHours": "Working Hours",
+    "delivery": "Delivery"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Cart is empty",
+    "total": "Total",
+    "checkout": "Checkout",
+    "clear": "Clear"
+  },
+  "payment": {
+    "title": "Payment",
+    "method": "Payment Method",
+    "amount": "Amount",
+    "card": "Card",
+    "cash": "Cash",
+    "payme": "Payme",
+    "click": "Click",
+    "status": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "completed": "Completed",
+      "failed": "Failed",
+      "cancelled": "Cancelled"
+    }
+  }
+} 

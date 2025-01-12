@@ -1,0 +1,61 @@
+{
+  "common": {
+    "loading": "Yuklanmoqda...",
+    "error": "Xatolik yuz berdi",
+    "success": "Muvaffaqiyatli",
+    "cancel": "Bekor qilish",
+    "save": "Saqlash",
+    "edit": "Tahrirlash",
+    "delete": "O'chirish",
+    "confirm": "Tasdiqlash",
+    "back": "Orqaga"
+  },
+  "auth": {
+    "login": "Kirish",
+    "register": "Ro'yxatdan o'tish",
+    "logout": "Chiqish",
+    "email": "Email",
+    "password": "Parol",
+    "confirmPassword": "Parolni tasdiqlang",
+    "forgotPassword": "Parolni unutdingizmi?",
+    "loginSuccess": "Tizimga muvaffaqiyatli kirdingiz",
+    "loginError": "Login yoki parol noto'g'ri",
+    "registerSuccess": "Ro'yxatdan muvaffaqiyatli o'tdingiz"
+  },
+  "restaurant": {
+    "menu": "Menyu",
+    "orders": "Buyurtmalar",
+    "reviews": "Sharhlar",
+    "address": "Manzil",
+    "workingHours": "Ish vaqti",
+    "delivery": "Yetkazib berish",
+    "pickup": "Olib ketish",
+    "minOrder": "Minimal buyurtma",
+    "deliveryTime": "Yetkazib berish vaqti",
+    "closed": "Yopiq"
+  },
+  "order": {
+    "orderNow": "Hozir buyurtma berish",
+    "addToCart": "Savatga qo'shish",
+    "checkout": "Rasmiylashtirish",
+    "total": "Jami",
+    "items": "mahsulotlar",
+    "orderStatus": {
+      "pending": "Kutilmoqda",
+      "confirmed": "Tasdiqlandi",
+      "preparing": "Tayyorlanmoqda",
+      "delivering": "Yetkazib berilmoqda",
+      "completed": "Yakunlandi",
+      "cancelled": "Bekor qilindi"
+    }
+  },
+  "profile": {
+    "myProfile": "Mening profilim",
+    "editProfile": "Profilni tahrirlash",
+    "myOrders": "Mening buyurtmalarim",
+    "myAddresses": "Mening manzillarim",
+    "settings": "Sozlamalar",
+    "language": "Til",
+    "notifications": "Bildirishnomalar"
+  }
+} 

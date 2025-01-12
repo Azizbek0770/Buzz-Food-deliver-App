@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and private routes
+Disallow: /admin/
+Disallow: /profile/
+Disallow: /checkout/
+Disallow: /cart/
+
+# Allow static assets
+Allow: /static/
+Allow: /media/
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://buzz-restaurant.uz/sitemap.xml 

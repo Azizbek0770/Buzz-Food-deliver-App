@@ -1,0 +1,45 @@
+{
+  "dashboard": "Payment Dashboard",
+  "total_payments": "Total Payments",
+  "total_amount": "Total Amount",
+  "successful_payments": "Successful Payments",
+  "failed_payments": "Failed Payments",
+  "daily_statistics": "Daily Statistics",
+  "daily_amount": "Daily Amount",
+  "payment_types": "Payment Types",
+  "count": "Count",
+  "types": {
+    "payme": "Payme",
+    "click": "Click",
+    "cash": "Cash",
+    "terminal": "Terminal"
+  },
+  "status": {
+    "pending": "Pending",
+    "processing": "Processing",
+    "completed": "Completed",
+    "failed": "Failed",
+    "cancelled": "Cancelled",
+    "refunded": "Refunded"
+  },
+  "form": {
+    "title": "Payment",
+    "amount": "Amount",
+    "payment_type": "Payment Type",
+    "submit": "Pay",
+    "cancel": "Cancel"
+  },
+  "messages": {
+    "payment_success": "Payment completed successfully",
+    "payment_error": "An error occurred during payment",
+    "payment_cancelled": "Payment was cancelled",
+    "payment_pending": "Payment is pending",
+    "payment_processing": "Payment is being processed"
+  },
+  "history": "Payment History",
+  "id": "ID",
+  "transaction_id": "Transaction ID",
+  "date": "Date",
+  "no_payments": "No payments available",
+  "status_label": "Status"
+} 

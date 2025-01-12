@@ -1,0 +1,71 @@
+{
+  "common": {
+    "loading": "Yuklanmoqda...",
+    "error": "Xatolik yuz berdi",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "delete": "O'chirish",
+    "edit": "Tahrirlash",
+    "close": "Yopish",
+    "backToOrders": "Buyurtmalarga qaytish",
+    "currency": "so'm"
+  },
+  "auth": {
+    "login": "Kirish",
+    "register": "Ro'yxatdan o'tish",
+    "logout": "Chiqish",
+    "email": "Email",
+    "password": "Parol",
+    "confirmPassword": "Parolni tasdiqlang",
+    "name": "Ism",
+    "phone": "Telefon",
+    "loginError": "Login yoki parol noto'g'ri",
+    "registerError": "Ro'yxatdan o'tishda xatolik yuz berdi",
+    "logoutError": "Tizimdan chiqishda xatolik yuz berdi"
+  },
+  "restaurant": {
+    "menu": "Menyu",
+    "order": "Buyurtma berish",
+    "reviews": "Sharhlar",
+    "address": "Manzil",
+    "workingHours": "Ish vaqti",
+    "delivery": "Yetkazib berish",
+    "loadError": "Restoranlarni yuklashda xatolik yuz berdi",
+    "addToCart": "Savatga qo'shish"
+  },
+  "cart": {
+    "title": "Savat",
+    "empty": "Savat bo'sh",
+    "total": "Jami",
+    "checkout": "Buyurtma berish",
+    "clear": "Tozalash",
+    "add": "Savatga qo'shish",
+    "addError": "Mahsulotni savatga qo'shishda xatolik yuz berdi",
+    "removeError": "Mahsulotni savatdan olib tashlashda xatolik yuz berdi"
+  },
+  "payment": {
+    "title": "To'lov",
+    "method": "To'lov usuli",
+    "amount": "Summa",
+    "card": "Karta",
+    "cash": "Naqd pul",
+    "payme": "Payme",
+    "click": "Click",
+    "pay": "To'lash",
+    "status": {
+      "title": "To'lov holati",
+      "pending": "Kutilmoqda",
+      "processing": "Amalga oshirilmoqda",
+      "completed": "Bajarildi",
+      "failed": "Muvaffaqiyatsiz",
+      "cancelled": "Bekor qilindi",
+      "checking": "Tekshirilmoqda",
+      "error": "Xatolik yuz berdi"
+    },
+    "error": {
+      "initiate": "To'lovni boshlashda xatolik yuz berdi",
+      "check": "To'lov holatini tekshirishda xatolik yuz berdi",
+      "cancel": "To'lovni bekor qilishda xatolik yuz berdi"
+    }
+  }
+} 

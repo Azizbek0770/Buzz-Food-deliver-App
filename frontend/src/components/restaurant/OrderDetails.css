@@ -1,0 +1,141 @@
+.order-details {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-details h3 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+.order-details h4 {
+  margin: 15px 0 10px;
+  color: #555;
+  font-size: 18px;
+}
+
+.customer-info {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.customer-info p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.items-list {
+  margin-bottom: 20px;
+}
+
+.items-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.items-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.items-list li:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  flex: 2;
+  font-weight: 500;
+}
+
+.item-quantity {
+  flex: 1;
+  text-align: center;
+  color: #666;
+}
+
+.item-price {
+  flex: 1;
+  text-align: right;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.order-summary {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  color: #666;
+}
+
+.summary-item.total {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px solid #eee;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.order-status {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.order-status p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.delivery-notes {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.delivery-notes p {
+  margin: 5px 0;
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .order-details {
+    padding: 15px;
+  }
+
+  .order-details h3 {
+    font-size: 20px;
+  }
+
+  .order-details h4 {
+    font-size: 16px;
+  }
+
+  .items-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+  }
+
+  .item-quantity,
+  .item-price {
+    margin-top: 5px;
+    text-align: left;
+  }
+} 

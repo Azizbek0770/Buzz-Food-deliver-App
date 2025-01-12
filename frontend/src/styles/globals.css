@@ -1,0 +1,74 @@
+:root {
+  --primary-color: #ff4757;
+  --secondary-color: #2f3542;
+  --background-color: #f1f2f6;
+  --text-color: #2f3542;
+  --border-color: #dfe4ea;
+  --success-color: #2ed573;
+  --error-color: #ff4757;
+  --warning-color: #ffa502;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.error-message {
+  color: var(--error-color);
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--error-color);
+  border-radius: 4px;
+  background-color: rgba(255, 71, 87, 0.1);
+}
+
+.success-message {
+  color: var(--success-color);
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--success-color);
+  border-radius: 4px;
+  background-color: rgba(46, 213, 115, 0.1);
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.button-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: #ff6b81;
+}
+
+.button-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.button-secondary:hover {
+  background-color: #3d3d3d;
+}

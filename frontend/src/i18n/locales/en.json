@@ -1,0 +1,61 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "back": "Back"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "loginSuccess": "Successfully logged in",
+    "loginError": "Invalid email or password",
+    "registerSuccess": "Successfully registered"
+  },
+  "restaurant": {
+    "menu": "Menu",
+    "orders": "Orders",
+    "reviews": "Reviews",
+    "address": "Address",
+    "workingHours": "Working Hours",
+    "delivery": "Delivery",
+    "pickup": "Pickup",
+    "minOrder": "Minimum Order",
+    "deliveryTime": "Delivery Time",
+    "closed": "Closed"
+  },
+  "order": {
+    "orderNow": "Order Now",
+    "addToCart": "Add to Cart",
+    "checkout": "Checkout",
+    "total": "Total",
+    "items": "items",
+    "orderStatus": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "preparing": "Preparing",
+      "delivering": "Delivering",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    }
+  },
+  "profile": {
+    "myProfile": "My Profile",
+    "editProfile": "Edit Profile",
+    "myOrders": "My Orders",
+    "myAddresses": "My Addresses",
+    "settings": "Settings",
+    "language": "Language",
+    "notifications": "Notifications"
+  }
+} 

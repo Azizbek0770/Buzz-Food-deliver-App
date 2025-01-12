@@ -1,0 +1,45 @@
+{
+  "dashboard": "To'lovlar boshqaruv paneli",
+  "total_payments": "Jami to'lovlar",
+  "total_amount": "Jami summa",
+  "successful_payments": "Muvaffaqiyatli to'lovlar",
+  "failed_payments": "Muvaffaqiyatsiz to'lovlar",
+  "daily_statistics": "Kunlik statistika",
+  "daily_amount": "Kunlik summa",
+  "payment_types": "To'lov turlari",
+  "count": "Soni",
+  "types": {
+    "payme": "Payme",
+    "click": "Click",
+    "cash": "Naqd pul",
+    "terminal": "Terminal"
+  },
+  "status": {
+    "pending": "Kutilmoqda",
+    "processing": "Jarayonda",
+    "completed": "Bajarildi",
+    "failed": "Muvaffaqiyatsiz",
+    "cancelled": "Bekor qilindi",
+    "refunded": "Qaytarildi"
+  },
+  "form": {
+    "title": "To'lov",
+    "amount": "Summa",
+    "payment_type": "To'lov turi",
+    "submit": "To'lash",
+    "cancel": "Bekor qilish"
+  },
+  "messages": {
+    "payment_success": "To'lov muvaffaqiyatli amalga oshirildi",
+    "payment_error": "To'lov jarayonida xatolik yuz berdi",
+    "payment_cancelled": "To'lov bekor qilindi",
+    "payment_pending": "To'lov kutilmoqda",
+    "payment_processing": "To'lov jarayonda"
+  },
+  "history": "To'lovlar tarixi",
+  "id": "ID",
+  "transaction_id": "Tranzaksiya ID",
+  "date": "Sana",
+  "no_payments": "To'lovlar mavjud emas",
+  "status_label": "Holat"
+} 

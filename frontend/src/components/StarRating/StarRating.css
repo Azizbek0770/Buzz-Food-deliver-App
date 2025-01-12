@@ -1,0 +1,32 @@
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  font-size: 1.2rem;
+}
+
+.star.filled {
+  color: #ffc107;
+}
+
+.star.half {
+  color: #ffc107;
+}
+
+.star.empty {
+  color: #e4e5e9;
+}
+
+.reviews-count {
+  font-size: 0.9rem;
+  color: #666;
+  margin-left: 4px;
+} 

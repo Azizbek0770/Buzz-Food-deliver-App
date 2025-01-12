@@ -1,0 +1,52 @@
+{
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "close": "Закрыть"
+  },
+  "auth": {
+    "login": "Войти",
+    "register": "Регистрация",
+    "logout": "Выйти",
+    "email": "Email",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "name": "Имя",
+    "phone": "Телефон"
+  },
+  "restaurant": {
+    "menu": "Меню",
+    "order": "Заказать",
+    "reviews": "Отзывы",
+    "address": "Адрес",
+    "workingHours": "Часы работы",
+    "delivery": "Доставка"
+  },
+  "cart": {
+    "title": "Корзина",
+    "empty": "Корзина пуста",
+    "total": "Итого",
+    "checkout": "Оформить заказ",
+    "clear": "Очистить"
+  },
+  "payment": {
+    "title": "Оплата",
+    "method": "Способ оплаты",
+    "amount": "Сумма",
+    "card": "Карта",
+    "cash": "Наличные",
+    "payme": "Payme",
+    "click": "Click",
+    "status": {
+      "pending": "В ожидании",
+      "processing": "Обрабатывается",
+      "completed": "Завершено",
+      "failed": "Не удалось",
+      "cancelled": "Отменено"
+    }
+  }
+} 

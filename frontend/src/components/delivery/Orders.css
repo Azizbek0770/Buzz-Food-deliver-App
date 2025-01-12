@@ -1,0 +1,41 @@
+.orders-page {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  padding: 20px;
+  margin: 20px;
+  background-color: #fee2e2;
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  color: #dc2626;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .orders-page {
+    padding: 10px;
+  }
+  
+  .loading {
+    height: 150px;
+    font-size: 16px;
+  }
+  
+  .error {
+    margin: 10px;
+    padding: 15px;
+    font-size: 14px;
+  }
+} 

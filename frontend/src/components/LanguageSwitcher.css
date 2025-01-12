@@ -1,0 +1,48 @@
+.language-switcher {
+  position: relative;
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+.language-select {
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #333;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.language-select:hover {
+  border-color: #666;
+}
+
+.language-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.language-switcher::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #666;
+  pointer-events: none;
+}
+
+.language-switcher-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+} 
