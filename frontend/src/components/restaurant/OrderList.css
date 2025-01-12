@@ -1,104 +1,39 @@
 .order-list {
-  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.order-list h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
+.order-list-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: background-color 0.2s ease;
 }
 
-.orders-container {
+.order-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.order-list-item.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.order-list-item.Mui-selected:hover {
+  background-color: rgba(25, 118, 210, 0.12);
+}
+
+.empty-orders {
+  padding: 2rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.order-item {
-  background: white;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  transition: transform 0.2s;
+  justify-content: center;
 }
 
-.order-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.order-info {
-  flex: 1;
-  cursor: pointer;
-}
-
-.order-info h3 {
-  margin: 0 0 10px;
-  color: #2c3e50;
-}
-
-.order-info p {
-  margin: 5px 0;
-  color: #666;
-}
-
-.order-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.accept-btn, .reject-btn, .ready-btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.accept-btn {
-  background-color: #2ecc71;
-  color: white;
-}
-
-.accept-btn:hover {
-  background-color: #27ae60;
-}
-
-.reject-btn {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.reject-btn:hover {
-  background-color: #c0392b;
-}
-
-.ready-btn {
-  background-color: #3498db;
-  color: white;
-}
-
-.ready-btn:hover {
-  background-color: #2980b9;
-}
-
-@media (max-width: 768px) {
-  .order-item {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .order-actions {
-    margin-top: 10px;
-    justify-content: flex-end;
-  }
-  
-  .accept-btn, .reject-btn, .ready-btn {
-    padding: 6px 12px;
-    font-size: 14px;
+@media (max-width: 600px) {
+  .order-list {
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   }
 } 

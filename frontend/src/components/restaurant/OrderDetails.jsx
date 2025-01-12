@@ -1,92 +1,185 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+import {
+  Paper,
+  Typography,
+  Box,
+  Divider,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  Chip,
+  Grid
+} from '@mui/material';
+import {
+  Phone,
+  LocationOn,
+  AccessTime,
+  Receipt
+} from '@mui/icons-material';
 import './OrderDetails.css';
 
-const OrderDetails = ({ order }) => {
-  if (!order) return null;
+const OrderDetails = ({ order, onStatusUpdate }) => {
+  const { t } = useTranslation();
+
+  const getNextStatus = (currentStatus) => {
+    const statusFlow = {
+      pending: 'confirmed',
+      confirmed: 'preparing',
+      preparing: 'ready',
+      ready: 'delivered',
+      delivered: 'completed'
+    };
+    return statusFlow[currentStatus];
+  };
+
+  const formatAddress = (address) => {
+    return `${address.street}, ${address.building}${address.apartment ? `, ${t('orders.apartment')} ${address.apartment}` : ''}`;
+  };
+
+  const calculateTotal = () => {
+    const subtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const delivery = order.deliveryFee || 0;
+    return {
+      subtotal,
+      delivery,
+      total: subtotal + delivery
+    };
+  };
+
+  const totals = calculateTotal();
 
   return (
-    <div className="order-details">
-      <h3>Buyurtma #{order.id} tafsilotlari</h3>
-      
-      <div className="customer-info">
-        <h4>Mijoz ma'lumotlari</h4>
-        <p>Ism: {order.customer_name}</p>
-        <p>Telefon: {order.customer_phone}</p>
-        <p>Manzil: {order.address}</p>
-      </div>
+    <Paper elevation={3} className="order-details">
+      <Box p={3}>
+        <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+          <Typography variant="h6">
+            {t('orders.orderNumber', { number: order.orderNumber })}
+          </Typography>
+          <Chip
+            label={t(`orders.status.${order.status}`)}
+            color="primary"
+            variant="outlined"
+          />
+        </Box>
 
-      <div className="items-list">
-        <h4>Buyurtma tarkibi</h4>
-        <ul>
-          {order.items.map(item => (
-            <li key={item.id}>
-              <span className="item-name">{item.name}</span>
-              <span className="item-quantity">{item.quantity} x</span>
-              <span className="item-price">{item.price} so'm</span>
-            </li>
+        <Grid container spacing={2} className="order-info">
+          <Grid item xs={12}>
+            <Box display="flex" alignItems="center" mb={1}>
+              <Phone color="action" />
+              <Typography variant="body1" ml={1}>
+                {order.customer.phone}
+              </Typography>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Box display="flex" alignItems="center" mb={1}>
+              <LocationOn color="action" />
+              <Typography variant="body1" ml={1}>
+                {formatAddress(order.deliveryAddress)}
+              </Typography>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Box display="flex" alignItems="center" mb={1}>
+              <AccessTime color="action" />
+              <Typography variant="body1" ml={1}>
+                {new Date(order.createdAt).toLocaleTimeString()}
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+
+        <Divider sx={{ my: 2 }} />
+
+        <Typography variant="h6" gutterBottom>
+          {t('orders.items')}
+        </Typography>
+
+        <List>
+          {order.items.map((item, index) => (
+            <ListItem key={index} disableGutters>
+              <ListItemText
+                primary={
+                  <Typography variant="body1">
+                    {item.quantity}x {item.name}
+                  </Typography>
+                }
+                secondary={item.notes}
+              />
+              <Typography variant="body1">
+                {t('currency', { value: item.price * item.quantity })}
+              </Typography>
+            </ListItem>
           ))}
-        </ul>
-      </div>
+        </List>
 
-      <div className="order-summary">
-        <div className="summary-item">
-          <span>Mahsulotlar narxi:</span>
-          <span>{order.subtotal} so'm</span>
-        </div>
-        <div className="summary-item">
-          <span>Yetkazib berish:</span>
-          <span>{order.delivery_fee} so'm</span>
-        </div>
-        <div className="summary-item total">
-          <span>Jami:</span>
-          <span>{order.total_amount} so'm</span>
-        </div>
-      </div>
+        <Divider sx={{ my: 2 }} />
 
-      <div className="order-status">
-        <h4>Buyurtma holati</h4>
-        <p>Status: {order.status}</p>
-        <p>Yaratilgan vaqt: {new Date(order.created_at).toLocaleString()}</p>
-        {order.accepted_at && (
-          <p>Qabul qilingan vaqt: {new Date(order.accepted_at).toLocaleString()}</p>
+        <Box className="order-summary">
+          <Box display="flex" justifyContent="space-between" mb={1}>
+            <Typography variant="body1">{t('orders.subtotal')}</Typography>
+            <Typography variant="body1">
+              {t('currency', { value: totals.subtotal })}
+            </Typography>
+          </Box>
+          <Box display="flex" justifyContent="space-between" mb={1}>
+            <Typography variant="body1">{t('orders.deliveryFee')}</Typography>
+            <Typography variant="body1">
+              {t('currency', { value: totals.delivery })}
+            </Typography>
+          </Box>
+          <Box display="flex" justifyContent="space-between" mb={1}>
+            <Typography variant="subtitle1" fontWeight="bold">
+              {t('orders.total')}
+            </Typography>
+            <Typography variant="subtitle1" fontWeight="bold">
+              {t('currency', { value: totals.total })}
+            </Typography>
+          </Box>
+        </Box>
+
+        {order.notes && (
+          <>
+            <Divider sx={{ my: 2 }} />
+            <Box className="order-notes">
+              <Typography variant="subtitle2" gutterBottom>
+                {t('orders.notes')}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                {order.notes}
+              </Typography>
+            </Box>
+          </>
         )}
-        {order.ready_at && (
-          <p>Tayyor bo'lgan vaqt: {new Date(order.ready_at).toLocaleString()}</p>
-        )}
-      </div>
 
-      <div className="delivery-notes">
-        <h4>Qo'shimcha ma'lumotlar</h4>
-        <p>{order.notes || 'Qo\'shimcha ma\'lumotlar mavjud emas'}</p>
-      </div>
-    </div>
+        {['pending', 'confirmed', 'preparing', 'ready', 'delivered'].includes(order.status) && (
+          <>
+            <Divider sx={{ my: 2 }} />
+            <Box display="flex" justifyContent="space-between">
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={() => onStatusUpdate(order.id, 'cancelled')}
+              >
+                {t('orders.cancel')}
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => onStatusUpdate(order.id, getNextStatus(order.status))}
+              >
+                {t(`orders.actions.${getNextStatus(order.status)}`)}
+              </Button>
+            </Box>
+          </>
+        )}
+      </Box>
+    </Paper>
   );
-};
-
-OrderDetails.propTypes = {
-  order: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    customer_name: PropTypes.string.isRequired,
-    customer_phone: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-    items: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        quantity: PropTypes.number.isRequired,
-        price: PropTypes.number.isRequired
-      })
-    ).isRequired,
-    subtotal: PropTypes.number.isRequired,
-    delivery_fee: PropTypes.number.isRequired,
-    total_amount: PropTypes.number.isRequired,
-    status: PropTypes.string.isRequired,
-    created_at: PropTypes.string.isRequired,
-    accepted_at: PropTypes.string,
-    ready_at: PropTypes.string,
-    notes: PropTypes.string
-  })
 };
 
 export default OrderDetails; 

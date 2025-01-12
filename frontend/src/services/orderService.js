@@ -1,24 +1,51 @@
-import api from './api';
+import api from './api/index';
 
-export const orderAPI = {
-  // Yetkazib beruvchi uchun buyurtmalarni olish
-  getDeliveryOrders: () => api.get('/orders/delivery/'),
+class OrderService {
+  async createOrder(orderData) {
+    try {
+      const response = await api.post('/orders/', orderData);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 
-  // Buyurtmani qabul qilish
-  acceptOrder: (orderId) => api.post(`/orders/delivery/${orderId}/accept/`),
+  async getOrders(params) {
+    try {
+      const response = await api.get('/orders/', { params });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 
-  // Yetkazishni boshlash
-  startDelivery: (orderId) => api.post(`/orders/delivery/${orderId}/start/`),
+  async getOrderById(orderId) {
+    try {
+      const response = await api.get(`/orders/${orderId}/`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 
-  // Yetkazishni yakunlash
-  completeDelivery: (orderId) => api.post(`/orders/delivery/${orderId}/complete/`),
+  async updateOrderStatus(orderId, status) {
+    try {
+      const response = await api.patch(`/orders/${orderId}/status/`, { status });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 
-  // Buyurtma yaratish
-  createOrder: (orderData) => api.post('/orders/', orderData),
+  async cancelOrder(orderId) {
+    try {
+      const response = await api.post(`/orders/${orderId}/cancel/`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+}
 
-  // Buyurtmalar ro'yxatini olish
-  getOrders: () => api.get('/orders/'),
-
-  // Buyurtma ma'lumotlarini olish
-  getOrder: (orderId) => api.get(`/orders/${orderId}/`),
-}; 
+const orderService = new OrderService();
+export default orderService; 

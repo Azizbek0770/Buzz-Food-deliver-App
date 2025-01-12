@@ -1,100 +1,139 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { selectRestaurantId } from '../../store/slices/authSlice';
-import orderService from '../../services/order.service';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import {
+  Box,
+  Typography,
+  Paper,
+  Tabs,
+  Tab,
+  CircularProgress,
+  Alert
+} from '@mui/material';
+import { fetchOrders, updateOrderStatus } from '../../redux/slices/orderSlice';
 import OrderList from './OrderList';
 import OrderDetails from './OrderDetails';
-import Modal from '../common/Modal';
 import './Orders.css';
 
 const Orders = () => {
-  const [orders, setOrders] = useState([]);
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const [selectedTab, setSelectedTab] = useState(0);
   const [selectedOrder, setSelectedOrder] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [showModal, setShowModal] = useState(false);
   
-  const restaurantId = useSelector(selectRestaurantId);
+  const { orders, loading, error } = useSelector((state) => state.orders);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    fetchOrders();
-  }, [restaurantId]);
+    const fetchData = async () => {
+      if (user?.restaurantId) {
+        await dispatch(fetchOrders(user.restaurantId));
+      }
+    };
+    fetchData();
+    
+    // Real-time updates using WebSocket
+    const ws = new WebSocket(process.env.REACT_APP_WS_URL);
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === 'ORDER_UPDATE' && data.restaurantId === user?.restaurantId) {
+        fetchData();
+      }
+    };
 
-  const fetchOrders = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await orderService.getRestaurantOrders(restaurantId);
-      setOrders(response.data);
-    } catch (err) {
-      setError('Buyurtmalarni yuklashda xatolik yuz berdi');
-      console.error('Error fetching orders:', err);
-    } finally {
-      setLoading(false);
-    }
+    return () => {
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.close();
+      }
+    };
+  }, [dispatch, user?.restaurantId]);
+
+  const handleTabChange = (event, newValue) => {
+    setSelectedTab(newValue);
+    setSelectedOrder(null);
   };
 
-  const handleAcceptOrder = async (orderId) => {
-    try {
-      await orderService.acceptOrder(orderId);
-      await fetchOrders();
-    } catch (err) {
-      setError('Buyurtmani qabul qilishda xatolik yuz berdi');
-      console.error('Error accepting order:', err);
-    }
-  };
-
-  const handleRejectOrder = async (orderId) => {
-    try {
-      await orderService.rejectOrder(orderId);
-      await fetchOrders();
-    } catch (err) {
-      setError('Buyurtmani rad etishda xatolik yuz berdi');
-      console.error('Error rejecting order:', err);
-    }
-  };
-
-  const handleSetOrderReady = async (orderId) => {
-    try {
-      await orderService.setOrderReady(orderId);
-      await fetchOrders();
-    } catch (err) {
-      setError('Buyurtma holatini o'zgartirishda xatolik yuz berdi');
-      console.error('Error setting order ready:', err);
-    }
-  };
-
-  const handleSelectOrder = (order) => {
+  const handleOrderSelect = (order) => {
     setSelectedOrder(order);
-    setShowModal(true);
+  };
+
+  const handleStatusUpdate = async (orderId, status) => {
+    try {
+      await dispatch(updateOrderStatus({ orderId, status }));
+      setSelectedOrder(null);
+    } catch (err) {
+      console.error('Error updating order status:', err);
+    }
   };
 
   if (loading) {
-    return <div className="loading">Yuklanmoqda...</div>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="400px">
+        <CircularProgress />
+      </Box>
+    );
   }
 
   if (error) {
-    return <div className="error">{error}</div>;
+    return (
+      <Box m={2}>
+        <Alert severity="error">{error}</Alert>
+      </Box>
+    );
   }
 
-  return (
-    <div className="orders-page">
-      <OrderList
-        orders={orders}
-        onAcceptOrder={handleAcceptOrder}
-        onRejectOrder={handleRejectOrder}
-        onSetOrderReady={handleSetOrderReady}
-        onSelectOrder={handleSelectOrder}
-      />
+  const filterOrders = () => {
+    switch (selectedTab) {
+      case 0: // New orders
+        return orders.filter(order => ['pending', 'confirmed'].includes(order.status));
+      case 1: // In progress
+        return orders.filter(order => ['preparing', 'ready'].includes(order.status));
+      case 2: // Completed
+        return orders.filter(order => ['delivered', 'completed'].includes(order.status));
+      default:
+        return orders;
+    }
+  };
 
-      <Modal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        title="Buyurtma tafsilotlari"
-      >
-        <OrderDetails order={selectedOrder} />
-      </Modal>
-    </div>
+  return (
+    <Box className="orders-container">
+      <Paper elevation={3} className="orders-paper">
+        <Typography variant="h5" gutterBottom>
+          {t('orders.title')}
+        </Typography>
+        
+        <Tabs
+          value={selectedTab}
+          onChange={handleTabChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+        >
+          <Tab label={t('orders.new')} />
+          <Tab label={t('orders.inProgress')} />
+          <Tab label={t('orders.completed')} />
+        </Tabs>
+
+        <Box display="flex" className="orders-content">
+          <Box className="orders-list">
+            <OrderList
+              orders={filterOrders()}
+              selectedOrder={selectedOrder}
+              onOrderSelect={handleOrderSelect}
+            />
+          </Box>
+          
+          {selectedOrder && (
+            <Box className="order-details">
+              <OrderDetails
+                order={selectedOrder}
+                onStatusUpdate={handleStatusUpdate}
+              />
+            </Box>
+          )}
+        </Box>
+      </Paper>
+    </Box>
   );
 };
 

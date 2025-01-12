@@ -1,86 +1,163 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { loginStart, loginSuccess, loginFailure } from '../../store/slices/authSlice';
-import { authAPI } from '../../services/api';
-import Button from '../../components/common/Button';
-import './Login.css';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import {
+  Box,
+  Card,
+  CardContent,
+  TextField,
+  Button,
+  Typography,
+  Alert,
+  Link,
+  InputAdornment,
+  IconButton
+} from '@mui/material';
+import {
+  Person,
+  Lock,
+  Visibility,
+  VisibilityOff
+} from '@mui/icons-material';
+import { login } from '../../redux/slices/authSlice';
 
 const Login = () => {
-  const navigate = useNavigate();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.auth);
+
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: ''
   });
-  const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
     try {
-      dispatch(loginStart());
-      const response = await authAPI.login(formData);
-      
-      // Token formati: access va refresh
-      localStorage.setItem('token', response.data.access);
-      localStorage.setItem('refresh_token', response.data.refresh);
-      
-      dispatch(loginSuccess({
-        user: response.data.user,
-        token: response.data.access,
-        refresh: response.data.refresh
-      }));
+      await dispatch(login(formData)).unwrap();
       navigate('/');
     } catch (err) {
-      dispatch(loginFailure(err.response?.data?.detail || 'Login xatosi'));
-      setError(err.response?.data?.detail || err.response?.data?.message || 'Login xatosi');
+      // Error handling is done in the slice
+      console.error('Login failed:', err);
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <div className="login-page">
-      <div className="login-form">
-        <h1>Kirish</h1>
-        {error && <div className="error-message">{error}</div>}
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Foydalanuvchi nomi</label>
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+      bgcolor="background.default"
+      p={2}
+    >
+      <Card sx={{ maxWidth: 400, width: '100%' }}>
+        <CardContent sx={{ p: 3 }}>
+          <Box textAlign="center" mb={3}>
+            <Typography variant="h5" component="h1" gutterBottom>
+              {t('auth.welcomeBack')}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {t('auth.loginToContinue')}
+            </Typography>
+          </Box>
+
+          {error && (
+            <Alert severity="error" sx={{ mb: 3 }}>
+              {error}
+            </Alert>
+          )}
+
+          <form onSubmit={handleSubmit}>
+            <TextField
+              fullWidth
+              label={t('auth.email')}
+              name="email"
+              type="email"
+              value={formData.email}
               onChange={handleChange}
+              margin="normal"
               required
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Person color="action" />
+                  </InputAdornment>
+                ),
+              }}
             />
-          </div>
-          <div className="form-group">
-            <label>Parol</label>
-            <input
-              type="password"
+
+            <TextField
+              fullWidth
+              label={t('auth.password')}
               name="password"
+              type={showPassword ? 'text' : 'password'}
               value={formData.password}
               onChange={handleChange}
+              margin="normal"
               required
-              minLength={8}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Lock color="action" />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={togglePasswordVisibility}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
-          </div>
-          <Button type="submit" fullWidth>
-            Kirish
-          </Button>
-        </form>
-        <p className="register-link">
-          Hisobingiz yo'qmi? <Link to="/register">Ro'yxatdan o'tish</Link>
-        </p>
-      </div>
-    </div>
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              size="large"
+              disabled={loading}
+              sx={{ mt: 3, mb: 2 }}
+            >
+              {loading ? t('common.loading') : t('auth.login')}
+            </Button>
+
+            <Box textAlign="center">
+              <Typography variant="body2">
+                {t('auth.noAccount')}{' '}
+                <Link
+                  component={RouterLink}
+                  to="/register"
+                  underline="hover"
+                  color="primary"
+                >
+                  {t('auth.register')}
+                </Link>
+              </Typography>
+            </Box>
+          </form>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 
